@@ -34,11 +34,18 @@ function displayTemp(response) {
   wind.innerHTML = Math.round(response.data.wind.speed);
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = currentDate(response.data.time * 1000);
+  let icon = document.querySelector("#icon");
+  icon.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+  icon.setAttribute("alt", response.data.condition.description);
 }
 
 let apiKey = "e8d0t21311e4ab493b99bo9d8480dbcf";
 let unit = "metric";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=new york&key=${apiKey}&units=${unit}`;
+let city = "New York";
+let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
 
 console.log(apiUrl);
 axios.get(apiUrl).then(displayTemp);
