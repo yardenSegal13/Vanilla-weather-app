@@ -41,11 +41,18 @@ function displayTemp(response) {
   );
   icon.setAttribute("alt", response.data.condition.description);
 }
+function search(city) {
+  let apiKey = "e8d0t21311e4ab493b99bo9d8480dbcf";
+  let unit = "metric";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(displayTemp);
+}
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#city-input");
+  search(cityInput.value);
+}
 
-let apiKey = "e8d0t21311e4ab493b99bo9d8480dbcf";
-let unit = "metric";
-let city = "New York";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${unit}`;
-
-console.log(apiUrl);
-axios.get(apiUrl).then(displayTemp);
+search("New York");
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
