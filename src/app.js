@@ -23,18 +23,21 @@ function currentDate(timestamp) {
 
 function displayTemp(response) {
   let temperature = document.querySelector("#temperature");
-  temperature.innerHTML = Math.round(response.data.temperature.current);
   let city = document.querySelector("#city");
-  city.innerHTML = response.data.city;
   let description = document.querySelector("#description");
-  description.innerHTML = response.data.condition.description;
   let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = response.data.temperature.humidity;
   let wind = document.querySelector("#wind");
-  wind.innerHTML = Math.round(response.data.wind.speed);
   let dateElement = document.querySelector("#date");
-  dateElement.innerHTML = currentDate(response.data.time * 1000);
   let icon = document.querySelector("#icon");
+
+  celsiusTemp = Math.round(response.data.temperature.current);
+
+  temperature.innerHTML = Math.round(response.data.temperature.current);
+  city.innerHTML = response.data.city;
+  description.innerHTML = response.data.condition.description;
+  humidity.innerHTML = response.data.temperature.humidity;
+  wind.innerHTML = Math.round(response.data.wind.speed);
+  dateElement.innerHTML = currentDate(response.data.time * 1000);
   icon.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
@@ -53,6 +56,32 @@ function handleSubmit(event) {
   search(cityInput.value);
 }
 
-search("New York");
+function displayFahrenheitTemprature(event) {
+  event.preventDefault();
+  let fahrenheitTemperature = (celsiusTemp * 9) / 5 + 32;
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let temperature = document.querySelector("#temperature");
+  temperature.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function displayCelsisTemprature(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperature = document.querySelector("#temperature");
+  temperature.innerHTML = celsiusTemp;
+}
+
+let celsiusTemp = null;
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemprature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsisTemprature);
+
+search("New York");

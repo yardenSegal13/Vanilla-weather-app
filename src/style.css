@@ -28,6 +28,10 @@ li::first-letter {
   text-transform: capitalize;
 }
 
+a {
+  text-decoration: none;
+}
+
 .weather-app {
   padding: 20px;
   border: 1px solid #70757a;
@@ -62,4 +66,10 @@ li::first-letter {
 .weather-temperature .units {
   position: relative;
   top: 3px;
+}
+
+.weather-temperature .active {
+  color: rgba(33, 33, 33);
+  cursor: default;
+  text-decoration: none;
 }
