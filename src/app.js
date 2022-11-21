@@ -22,7 +22,6 @@ function currentDate(timestamp) {
 }
 
 function displayTemp(response) {
-  console.log(response.data);
   let temperature = document.querySelector("#temperature");
   temperature.innerHTML = Math.round(response.data.temperature.current);
   let city = document.querySelector("#city");
