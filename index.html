@@ -11,6 +11,7 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <link rel="stylesheet" href="src/style.css" />
@@ -32,11 +33,7 @@
                 />
               </div>
               <div class="col-2">
-                <input
-                  type="submit"
-                  value="Search"
-                  class="btn btn-primary w-100"
-                />
+                <input type="submit" value="🔍" id="search" />
               </div>
             </div>
           </form>
@@ -57,11 +54,33 @@
                   <a href="#" id="fahrenheit-link">°F</a></span
                 >
               </div>
-            </div>
-            <div class="col-6">
-              <ul>
+              <ul class="description">
                 <li>Humidity: <span id="humidity"></span>%</li>
                 <li>Wind: <span id="wind"></span> km/h</li>
+              </ul>
+            </div>
+            <div class="col-6 days">
+              <ul class="days-block">
+                <li>
+                  Fri <br />
+                  21° / 27°
+                </li>
+                <li>
+                  Sat <br />
+                  21° / 27°
+                </li>
+                <li>
+                  Sun <br />
+                  21° / 29°
+                </li>
+                <li>
+                  Mon <br />
+                  22° / 28°
+                </li>
+                <li>
+                  Tue <br />
+                  21° / 28°
+                </li>
               </ul>
             </div>
           </div>
