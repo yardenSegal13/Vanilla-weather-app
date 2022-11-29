@@ -58,23 +58,6 @@ function handleSubmit(event) {
   search(cityInput.value);
 }
 
-function displayFahrenheitTemprature(event) {
-  event.preventDefault();
-  let fahrenheitTemperature = (celsiusTemp * 9) / 5 + 32;
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let temperature = document.querySelector("#temperature");
-  temperature.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function displayCelsisTemprature(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let temperature = document.querySelector("#temperature");
-  temperature.innerHTML = celsiusTemp;
-}
-
 function getForcast(coordinates) {
   let apiKey = "e8d0t21311e4ab493b99bo9d8480dbcf";
   let unit = "metric";
@@ -126,10 +109,4 @@ let celsiusTemp = null;
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemprature);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsisTemprature);
-
-search("New York");
+search("Amsterdam");
