@@ -77,30 +77,44 @@ function displayCelsisTemprature(event) {
 
 function getForcast(coordinates) {
   let apiKey = "e8d0t21311e4ab493b99bo9d8480dbcf";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units='metric'`;
+  let unit = "metric";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=${unit}`;
   axios.get(apiUrl).then(displayForecast);
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Fri", "Sat", "Sun", "Mon", "Tue"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
     <div class="col-7">
     <div class="days-block">
       
-        <div class="weather-forecast-date">${day}</div>
+        <div class="weather-forecast-date">${formatDay(forecastDay.time)}</div>
          <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" alt="" width="42" />
-        <span class="forecast-temp-min">21° </span> /
-        <span class="weather-forecast-max">27°</span>
+        <span class="forecast-temp-min">${Math.round(
+          forecastDay.temperature.minimum
+        )}°</span> /
+        <span class="weather-forecast-max">${Math.round(
+          forecastDay.temperature.maximum
+        )}°</span>
       
     </div>
     </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
