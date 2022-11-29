@@ -73,6 +73,31 @@ function displayCelsisTemprature(event) {
   temperature.innerHTML = celsiusTemp;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Fri", "Sat", "Sun", "Mon", "Tue"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="col-7">
+    <div class="days-block">
+      
+        <div class="weather-forecast-date">${day}</div>
+         <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" alt="" width="42" />
+        <span class="forecast-temp-min">21° </span> /
+        <span class="weather-forecast-max">27°</span>
+      
+    </div>
+    </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let celsiusTemp = null;
 
 let form = document.querySelector("#search-form");
@@ -85,3 +110,4 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsisTemprature);
 
 search("New York");
+displayForecast();
