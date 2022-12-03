@@ -33,6 +33,11 @@ a {
   padding: 20px;
   border: 8px solid rgb(121, 200, 222);
   border-radius: 20px;
+  background: linear-gradient(
+    181.2deg,
+    rgb(181, 239, 249) 10.5%,
+    rgb(254, 254, 254) 86.8%
+  );
 }
 
 .weather-app-wrapper {
@@ -52,17 +57,21 @@ a {
 .weather-temperature img {
   margin-right: 6px;
   display: inline-block;
-  height: 60px;
+  height: 120px;
   margin-top: unset;
   vertical-align: top;
-  width: 60px;
+  width: 120px;
 }
 
 .weather-temperature strong {
   color: rgba(33, 33, 33);
   font-size: 64px;
   font-weight: 400;
-  line-height: 1;
+  line-height: 2;
+}
+
+.units {
+  line-height: 6;
 }
 
 #search {
@@ -89,18 +98,18 @@ a {
   position: relative;
   top: -15px;
   left: 20px;
-  line-height: 1;
-  padding: 8px;
+  line-height: 0.3;
+  padding: 8px 0px 8px 8px;
 }
 
 .days-block img {
   margin-right: 6px;
   display: inline-block;
-  height: 30px;
+  height: 45px;
   vertical-align: middle;
-  width: 30px;
+  width: 45px;
 }
 
 .description {
-  padding-top: 40px;
+  padding-top: 30px;
 }
